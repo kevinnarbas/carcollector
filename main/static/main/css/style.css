@@ -12,7 +12,7 @@ main a {
   color: inherit;
 }
 
-.card:hover{
+.hover:hover{
   -webkit-box-shadow: 0px 4px 10px 0px rgba(45,45,45,0.79); 
   box-shadow: 0px 4px 10px 0px rgba(45,45,45,0.79);
 }

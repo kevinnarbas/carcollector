@@ -12,19 +12,22 @@
   <title>Car Collector</title>
 </head>
 <body>
-  <header class="navbar-fixed">
+  <header class="">
+    <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper cyan ">
           <ul>
             <li><a href="/" class="left brand-logo">&nbsp;&nbsp;CarCollector</a></li>
           </ul>
           <ul class="right">
-            <li><a href="/about">About</a></li>
-            <li><a href="/cars">View All My Cars</a></li>
+            <li><a href="{% url 'main:about' %}">About</a></li>
+            <li><a href="{% url 'main:create' %}">Add A Car</a></li>
+            <li><a href="{% url 'main:index' %}">View My Garage</a></li>
           </ul>
         </div>
       </nav>
-    </header>
+    </div>  
+  </header>
 
   <main class="container">
     {% block content %}
