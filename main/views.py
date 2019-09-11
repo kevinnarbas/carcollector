@@ -15,8 +15,9 @@ def cars_index(request):
   return render(request, 'main/cars/index.html', {'cars': cars})
 
 def cars_detail(request, car_id):
+  navcars = Car.objects.all()
   car = Car.objects.get(id=car_id)
-  return render(request, 'main/cars/detail.html', {'car': car})
+  return render(request, 'main/cars/detail.html', {'car': car, 'navcars': navcars})
 
 class CarCreate(CreateView):
   model = Car

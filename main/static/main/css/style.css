@@ -17,6 +17,10 @@ main a {
   box-shadow: 0px 4px 10px 0px rgba(45,45,45,0.79);
 }
 
+.tabs .tab a:hover{
+  background-color: #FF9800;
+}
+
 footer {
   padding-top: 0;
   text-align: center;

@@ -12,10 +12,10 @@
   <title>Car Collector</title>
 </head>
 <body>
-  <header class="">
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper cyan ">
+  <header>
+    <nav class="nav-extended">
+      <div class="navbar-fixed">
+        <div class="nav-wrapper orange ">
           <ul>
             <li><a href="/" class="left brand-logo">&nbsp;&nbsp;CarCollector</a></li>
           </ul>
@@ -25,8 +25,18 @@
             <li><a href="{% url 'main:index' %}">View My Garage</a></li>
           </ul>
         </div>
-      </nav>
-    </div>  
+      </div>
+      {% if navcars %}
+      <div class="nav-content">
+        <ul class="tabs orange darken-2">
+          <li class="tab"><a class="white-text active" href="{% url 'main:index' %}">Garage: </a></li>
+          {% for c in navcars %}
+          <li class="tab"><a class="white-text" href="{% url 'main:detail' c.id %}">{{c.model}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </nav>
   </header>
 
   <main class="container">
@@ -34,7 +44,7 @@
     {% endblock %}
   </main>
 
-  <footer class="page-footer cyan">
+  <footer class="page-footer orange">
     <div>Carcollector made with ♥︎ by Kevinn Arbas. Remember to ♻︎</div>
   </footer>
 </body>
