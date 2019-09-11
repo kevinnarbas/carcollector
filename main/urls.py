@@ -11,4 +11,5 @@ urlpatterns = [
   path('cars/<int:car_id>/', views.cars_detail, name='detail'),
   path('cars/<int:pk>/update', views.CarUpdate.as_view(), name='update'),
   path('cars/<int:pk>/delete', views.CarDelete.as_view(), name='delete'),
+  path('cars/<int:car_id>/oilchange', views.oilchange, name='oilchange'),
 ]

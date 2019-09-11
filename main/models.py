@@ -4,14 +4,15 @@ from django.urls import reverse
 # Create your models here.
 
 YESNO = (
-  ('y', 'Yes'),
-  ('n', 'No'),
+  ('Y', 'Yes'),
+  ('N', 'No'),
 )
 
 
 class Car(models.Model):
   model = models.CharField(max_length=50)
   make = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
   year = models.IntegerField()
   description = models.TextField() 
 
@@ -32,3 +33,8 @@ class Oilchange(models.Model):
 
   def __str__(self):
     return f'{self.date}'
+
+  class Meta:
+    ordering = ['-mileage']
+
+

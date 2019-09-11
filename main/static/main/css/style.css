@@ -21,6 +21,35 @@ main a {
   background-color: #FF9800;
 }
 
+.oilform li{
+  display: inline;
+}
+
+.datepicker-cancel,
+.datepicker-done {
+  color: #FF9800;
+}
+.datepicker-date-display {
+background-color: #FF9800;
+}
+
+.datepicker-day-button {
+  background-color: transparent;
+}
+
+.datepicker-table td.is-selected {
+  background-color: #FF9800;
+  color: #fff;
+}
+
+.cap {
+  text-transform: capitalize;
+}
+
+.no-cap {
+  text-transform: none;
+}
+
 footer {
   padding-top: 0;
   text-align: center;

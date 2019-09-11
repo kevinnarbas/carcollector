@@ -3,9 +3,9 @@
 {% block content %}
 
 {% if object %}
-  <h1>Edit <span class="grey-text text-darken-1">{{object.model}}</span></h1>
+  <h1><i class="material-icons medium">edit</i>Edit <span class="grey-text text-darken-1">{{object.model}}</span></h1>
 {% else %}
-  <h1>Add A Car</h1>
+  <h1><i class="material-icons medium">add_circle</i> Add A Car</h1>
 {% endif %}
 
 <form action="" method="POST">
@@ -16,9 +16,9 @@
   </table>
   <br><br>
   {% if object %}
-    <button type="submit" class="btn">Edit Description</button>
+    <button type="submit" class="btn grey">Edit Description</button>
   {% else %}
-    <button type="submit" class="btn">Add Car!</button>
+    <button type="submit" class="btn grey">Add Car!</button>
   {% endif %}
 </form>
 
