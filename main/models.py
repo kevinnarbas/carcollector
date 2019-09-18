@@ -1,5 +1,8 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+from datetime import date
+
 
 # Create your models here.
 
@@ -8,6 +11,16 @@ YESNO = (
   ('N', 'No'),
 )
 
+class Driver(models.Model):
+  name = models.CharField(max_length=20)
+  age = models.IntegerField()
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('main:drivers_detail', kwargs={'pk': self.id})
+
 
 class Car(models.Model):
   model = models.CharField(max_length=50)
@@ -15,6 +28,8 @@ class Car(models.Model):
   color = models.CharField(max_length=20)
   year = models.IntegerField()
   description = models.TextField() 
+  drivers = models.ManyToManyField(Driver)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     return f'({self.id}) {self.model}'
@@ -38,3 +53,9 @@ class Oilchange(models.Model):
     ordering = ['-mileage']
 
 
+class Photo(models.Model):
+  url = models.CharField(max_length=200)
+  car = models.ForeignKey(Car, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"Photo for car_id: {self.car_id} @{self.url}"

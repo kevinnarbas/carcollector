@@ -12,33 +12,65 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <title>Car Collector</title>
 </head>
-<body>
-  <header>
-    <nav class="nav-extended">
-      <div class="navbar-fixed">
-        <div class="nav-wrapper orange ">
-          <ul>
-            <li><a href="/" class="left brand-logo">&nbsp;&nbsp;CarCollector</a></li>
-          </ul>
-          <ul class="right">
-            <li><a href="{% url 'main:about' %}">About</a></li>
-            <li><a href="{% url 'main:create' %}">Add A Car</a></li>
-            <li><a href="{% url 'main:index' %}">View My Garage</a></li>
-          </ul>
-        </div>
-      </div>
-      {% if navcars %}
-      <div class="nav-content">
-        <ul class="tabs orange darken-2">
-          <li class="tab"><a class="white-text active" href="{% url 'main:index' %}">Garage: </a></li>
-          {% for c in navcars %}
-          <li class="tab"><a class="white-text" href="{% url 'main:detail' c.id %}">{{c.model}}</a></li>
-          {% endfor %}
+<header>
+  <nav class="nav-extended">
+    <div class="navbar-fixed">
+      <div class="nav-wrapper orange ">
+        <ul>
+          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;CarCollector</a></li>
+        </ul>
+        <ul class="right">
+          <li><a href="{% url 'main:about' %}">About</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'main:drivers_create' %}">Add Driver</a></li>
+            <li><a href="{% url 'main:drivers_index' %}">View Drivers</a></li>
+            <li><a href="{% url 'main:create' %}">Add Car</a></li>
+            <li><a href="{% url 'main:index' %}">{{ user.username|capfirst }} Garage</a></li>
+            <li><a href="{% url 'main:logout' %}">Log Out</a></li>
+          {% else %}
+            <li><a href="{% url 'main:signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'main:login' %}">Log In</a></li>
+          {% endif %}
         </ul>
       </div>
-      {% endif %}
-    </nav>
-  </header>
+    </div>
+    {% if navcars %}
+    <div class="nav-content">
+      <ul class="tabs orange darken-2">
+        <li class="tab"><a class="white-text active" href="{% url 'main:index' %}">Garage: </a></li>
+        {% for c in navcars %}
+        <li class="tab"><a class="white-text" href="{% url 'main:detail' c.id %}">{{c.model}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if driver %}
+    <div class="nav-content">
+      <ul class="tabs orange darken-2">
+        <li class="tab"><a class="white-text active" href="{% url 'main:drivers_index' %}">Driver: </a></li>
+        {% for d in object_list %}
+        <li class="tab"><a class="white-text" href="{% url 'main:drivers_detail' d.id %}">{{d.name}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </nav>
+</header>
+<body>
+
+  {% if messages %}
+  {% for message in messages %}
+    {% if message.tags == 'success'%}
+      <script>M.toast({html: "{{message}}", classes: 'orange rounded', displayLength:2000});</script>
+    {% elif message.tags == 'info'%}
+      <script>M.toast({html: "{{message}}", classes: 'grey rounded', displayLength:2000});</script>
+    {% elif message.tags == 'warning'%}
+      <script>M.toast({html: "{{message}}", classes: 'red rounded', displayLength:10000});</script>
+    {% elif message.tags == 'error'%}
+      <script>M.toast({html: "{{message}}", classes: 'red rounded', displayLength:10000});</script>
+    {% endif %}
+  {% endfor %}
+  {% endif %}
 
   <main class="container">
     {% block content %}

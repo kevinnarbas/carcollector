@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>Delete Confirmation</h1>
+
+<h3><span class="grey-text text-darken-1">{{ object.model }}</span> will be deleted from your garage</h3>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <button class="btn" type="submit">Remove Driver</button>
+  <a href="{% url 'main:drivers_detail' object.id %}">Keep Driver</a>
+</form>
+
+{% endblock %}
