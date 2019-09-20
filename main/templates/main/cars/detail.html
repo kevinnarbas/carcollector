@@ -2,11 +2,13 @@
 {% block content %}
 
 <h1><i class="material-icons medium">directions_car</i> Car Details</h1>
+<div>
 {% if car.photo_set.count %}
 <div class="carousel">
-  {% for photo in car.photo_set.all %}
+{% for photo in car.photo_set.all %}
   <img class="carousel-item" src="{{photo.url}}">
-  {% endfor %}
+{% endfor %}
+</div>
 {% else %}
 <p class="grey-text center-align">Upload some photos and see them here!</p>
 {% endif %}

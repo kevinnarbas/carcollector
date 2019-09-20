@@ -117,7 +117,7 @@ def login_request(request):
 class CarCreate(LoginRequiredMixin, CreateView):
   model = Car
   template_name = 'main/create.html'
-  fields = '__all__'
+  fields = ['model', 'make', 'color', 'year', 'description']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
